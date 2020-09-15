@@ -1,0 +1,53 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.3.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'com.lukes.learning'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
+
+bootRun {
+	// RUN AS - gradle bootRun
+	jvmArgs = [
+				"-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
+			]
+
+	// RUN AS - gradle bootRun -PjvmArgs="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
+//	if ( project.hasProperty('jvmArgs') ) {
+//		jvmArgs project.jvmArgs.split('\\s+')
+//	}
+
+	// RUN AS - gradle bootRun
+//	systemProperties "property1": "value1", "property2": "value2"
+
+	// RUN AS - gradle bootRun -Dproperty3=value3 -Dproperty4=value4
+//	systemProperties = System.properties
+}
+
