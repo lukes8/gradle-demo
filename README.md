@@ -12,7 +12,9 @@ type '**gradle bootRun**' in the same directory that the build.gradle-file resid
 ## Or another examples
 See build.gradle comments<br>
 
+For remote debug:<br>
 type '**gradle bootRun -PjvmArgs="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"**' 
 
+For system properties:<br>
 type '**gradle bootRun -Dproperty3=value3 -Dproperty4=value4**'
 
